@@ -30,9 +30,9 @@ func startRepl() {
 
 		command, ok := commands.GetAll()[commandName]
 		if !ok {
-			fmt.Println("Command not recognized")
+			fmt.Println("Unknown command, type 'help' to see the available commands!")
 			continue
-		} 
+		}
 
 		err := command.Callback()
 		if err != nil {
