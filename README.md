@@ -4,4 +4,5 @@ Nesta API, a *standard library* de Go foi utilizada quase que exclusivamente, co
 - Criação de CLI (*Command line interface*)
 - Prática de execução de requisições HTTP em um contexto de API
 - Familiarização com *tooling* e desenvolvimento local
-- *Caching* e sua utilização para melhora de performance
+- *Caching* e sua utilização para melhora de performance, em conjunto com o próximo item
+- Utilização de concorrência para otimização de APIs em Go (Goroutines, Mutexes e Channels)
