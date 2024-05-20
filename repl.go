@@ -34,7 +34,12 @@ func startRepl() {
 			continue
 		}
 
-		err := command.Callback()
+		config := &commands.Config{
+			Next: "placeholder",
+			Previous: "placeholder",
+		}
+
+		err := command.Callback(config)
 		if err != nil {
 			fmt.Println(err)
 		}

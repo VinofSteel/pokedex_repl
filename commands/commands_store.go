@@ -1,9 +1,13 @@
 package commands
 
+type Config struct {
+	Next string `json:"next"`
+	Previous string `json:"previous"`
+}
 type CliCommand struct {
 	name        string
 	description string
-	Callback    func() error // Needs to be exported
+	Callback    func(*Config) error // Needs to be exported
 }
 
 func GetAll() map[string]CliCommand {
@@ -17,6 +21,11 @@ func GetAll() map[string]CliCommand {
 			name:        "exit",
 			description: "Exit the Pokedex",
 			Callback:    Exit,
+		},
+		"map": {
+			name: "map",
+			description: "Get the names of 20 Pokémon maps by page",
+			Callback: Map,
 		},
 	}
 }
