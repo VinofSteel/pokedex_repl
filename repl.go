@@ -35,7 +35,7 @@ func startRepl() {
 		}
 
 		config := &commands.Config{
-			Next: "placeholder",
+			Next:     "placeholder",
 			Previous: "placeholder",
 		}
 

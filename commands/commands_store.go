@@ -1,7 +1,7 @@
 package commands
 
 type Config struct {
-	Next string `json:"next"`
+	Next     string `json:"next"`
 	Previous string `json:"previous"`
 }
 type CliCommand struct {
@@ -23,9 +23,9 @@ func GetAll() map[string]CliCommand {
 			Callback:    Exit,
 		},
 		"map": {
-			name: "map",
+			name:        "map",
 			description: "Get the names of 20 Pokémon maps by page",
-			Callback: Map,
+			Callback:    Map,
 		},
 	}
 }
