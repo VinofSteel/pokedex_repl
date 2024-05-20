@@ -1,14 +1,41 @@
 package commands
 
 import (
+	"errors"
 	"fmt"
-
-	"github.com/vinofsteel/pokedex-repl/client"
 )
 
-func Map(config *Config) error {
-	fmt.Println("I am the map!")
-	client.GetLocations()
+func MapF(cfg *Config) error {
+	locationsResp, err := cfg.PokeapiClient.ListLocations(cfg.nextLocationsURL)
+	if err != nil {
+		return err
+	}
 
+	cfg.nextLocationsURL = locationsResp.Next
+	cfg.prevLocationsURL = locationsResp.Previous
+
+	for _, loc := range locationsResp.Results {
+		fmt.Println(loc.Name)
+	}
+
+	return nil
+}
+
+func MapB(cfg *Config) error {
+	if cfg.prevLocationsURL == nil {
+		return errors.New("you're on the first location page")
+	}
+
+	locationResp, err := cfg.PokeapiClient.ListLocations(cfg.prevLocationsURL)
+	if err != nil {
+		return err
+	}
+
+	cfg.nextLocationsURL = locationResp.Next
+	cfg.prevLocationsURL = locationResp.Previous
+
+	for _, loc := range locationResp.Results {
+		fmt.Println(loc.Name)
+	}
 	return nil
 }

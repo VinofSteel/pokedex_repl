@@ -15,7 +15,7 @@ func sanitizeInput(text string) []string {
 	return words
 }
 
-func startRepl() {
+func startRepl(cfg *commands.Config) {
 	reader := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("Pokedex > ")
@@ -34,12 +34,7 @@ func startRepl() {
 			continue
 		}
 
-		config := &commands.Config{
-			Next:     "placeholder",
-			Previous: "placeholder",
-		}
-
-		err := command.Callback(config)
+		err := command.Callback(cfg)
 		if err != nil {
 			fmt.Println(err)
 		}

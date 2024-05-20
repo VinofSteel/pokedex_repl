@@ -1,8 +1,11 @@
 package commands
 
+import "github.com/vinofsteel/pokedex-repl/internal/client"
+
 type Config struct {
-	Next     string `json:"next"`
-	Previous string `json:"previous"`
+	PokeapiClient    client.Client
+	nextLocationsURL *string
+	prevLocationsURL *string
 }
 type CliCommand struct {
 	name        string
@@ -24,8 +27,13 @@ func GetAll() map[string]CliCommand {
 		},
 		"map": {
 			name:        "map",
-			description: "Get the names of 20 Pokémon maps by page",
-			Callback:    Map,
+			description: "Get the next page of locations",
+			Callback:    MapF,
+		},
+		"mapb": {
+			name:        "mapb",
+			description: "Get the previous page of locations",
+			Callback:    MapB,
 		},
 	}
 }
