@@ -3,13 +3,14 @@ package client
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 )
 
 func (c *Client) ExploreLocation(param *string) (RespLocation, error) {
 	if param == nil || *param == "" {
-		return RespLocation{}, errors.New("you need to declare the name parameter to explore a location")
+		return RespLocation{}, errors.New("you need to declare the name parameter to explore a location, like this: explore <name>")
 	}
 	url := baseURL + "location-area/" + *param
 
@@ -42,7 +43,7 @@ func (c *Client) ExploreLocation(param *string) (RespLocation, error) {
 	location := RespLocation{}
 	err = json.Unmarshal(data, &location)
 	if err != nil {
-		return RespLocation{}, err
+		return RespLocation{}, fmt.Errorf("invalid location name, error: %v", err)
 	}
 
 	c.cache.Add(url, data)

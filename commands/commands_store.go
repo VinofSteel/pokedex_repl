@@ -6,6 +6,7 @@ type Config struct {
 	PokeapiClient    client.Client
 	nextLocationsURL *string
 	prevLocationsURL *string
+	CaughtPokemon    map[string]client.Pokemon
 }
 type CliCommand struct {
 	name        string
@@ -39,6 +40,11 @@ func GetAll() map[string]CliCommand {
 			name:        "explore",
 			description: "Explore an area by name and see all the pokemon in it",
 			Callback:    Explore,
+		},
+		"catch": {
+			name:        "catch",
+			description: "Attempt to catch a pokemon by name",
+			Callback:    Catch,
 		},
 	}
 }

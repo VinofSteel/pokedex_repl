@@ -8,9 +8,11 @@ import (
 )
 
 func main() {
-	client := client.NewClient(10*time.Second, 10*time.Minute)
+	newClient := client.NewClient(10*time.Second, 10*time.Minute)
+
 	cfg := &commands.Config{
-		PokeapiClient: client,
+		CaughtPokemon: map[string]client.Pokemon{},
+		PokeapiClient: newClient,
 	}
 
 	startRepl(cfg)
