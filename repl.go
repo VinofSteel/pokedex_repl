@@ -28,13 +28,18 @@ func startRepl(cfg *commands.Config) {
 
 		commandName := words[0]
 
+		firstParameter := ""
+		if len(words) > 1 {
+			firstParameter = words[1]
+		}
+
 		command, ok := commands.GetAll()[commandName]
 		if !ok {
 			fmt.Println("Unknown command, type 'help' to see the available commands!")
 			continue
 		}
 
-		err := command.Callback(cfg)
+		err := command.Callback(cfg, &firstParameter)
 		if err != nil {
 			fmt.Println(err)
 		}

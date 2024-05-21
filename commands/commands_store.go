@@ -10,7 +10,7 @@ type Config struct {
 type CliCommand struct {
 	name        string
 	description string
-	Callback    func(*Config) error // Needs to be exported
+	Callback    func(*Config, *string) error // Needs to be exported
 }
 
 func GetAll() map[string]CliCommand {
@@ -34,6 +34,11 @@ func GetAll() map[string]CliCommand {
 			name:        "mapb",
 			description: "Get the previous page of locations",
 			Callback:    MapB,
+		},
+		"explore": {
+			name:        "explore",
+			description: "Explore an area by name and see all the pokemon in it",
+			Callback:    Explore,
 		},
 	}
 }
