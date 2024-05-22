@@ -51,5 +51,10 @@ func GetAll() map[string]CliCommand {
 			description: "Inspect a caught pokémon by name",
 			Callback:    Inspect,
 		},
+		"pokedex": {
+			name:        "pokedex",
+			description: "See your pokédex! Lists every pokémon you've caught",
+			Callback:    Pokedex,
+		},
 	}
 }
