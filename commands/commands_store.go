@@ -38,13 +38,18 @@ func GetAll() map[string]CliCommand {
 		},
 		"explore": {
 			name:        "explore",
-			description: "Explore an area by name and see all the pokemon in it",
+			description: "Explore an area by name and see all the pokémon in it",
 			Callback:    Explore,
 		},
 		"catch": {
 			name:        "catch",
-			description: "Attempt to catch a pokemon by name",
+			description: "Attempt to catch a pokémon by name",
 			Callback:    Catch,
+		},
+		"inspect": {
+			name:        "inspect",
+			description: "Inspect a caught pokémon by name",
+			Callback:    Inspect,
 		},
 	}
 }
